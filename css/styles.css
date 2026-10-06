@@ -1265,3 +1265,8 @@ html, body { overflow-x: clip; }                       /* no sideways page scrol
   .theme-lagoon.snap-case .cs-hero__visual, .snap-case .theme-lagoon .cs-hero__visual { max-width: min(100%, 31svh); }
   .snap-case .fix > .label { margin-bottom: 8px; }
 }
+/* desktop slides: photo rows stay one row; panel headers centre their text */
+@media (min-width: 760px) {
+  .snap-case .ground:not(.ground--tall) { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
+}
+.snap-case main > header.part { align-content: center; align-items: center; }
