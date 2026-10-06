@@ -1149,7 +1149,7 @@ html.snap-case { scroll-snap-type: y mandatory; --bar-h: 72px; }
     overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
     margin-inline: -20px; padding: 6px 20px 14px; scroll-padding-inline: 20px;
     scrollbar-width: none;
-    -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 18px, #000 84%, transparent); mask-image: linear-gradient(90deg, transparent, #000 18px, #000 84%, transparent);
   }
   .snap-case :is(.ground, .series, .night__grid, .values, .day, .flow-steps, .poster-wall)::-webkit-scrollbar { display: none; }
   .snap-case :is(.ground, .series, .night__grid, .values, .day, .flow-steps, .poster-wall) > * { flex: 0 0 78%; scroll-snap-align: start; }
@@ -1194,16 +1194,49 @@ html[lang="th"] .memo__goals b { line-height: 1.4; }
   .snap-case .poster__stamp { scale: .8; }
 }
 
-/* home: Education and Certifications are separate snap slides; certificates swipe on phones */
-.snap-home .about { scroll-snap-align: start; }
-.snap-home .certs { scroll-snap-align: start; scroll-snap-stop: always; min-height: calc(100svh - 104px); align-content: center; }
-@media (min-width: 601px) { .snap-home .certs { min-height: calc(100svh - 72px); } }
+/* home: About and Certifications are separate one-screen slides; certificates swipe on phones */
+.snap-home .about, .snap-home .certs-slide { min-height: calc(100svh - 104px); align-content: center; scroll-snap-align: start; scroll-snap-stop: always; }
+@media (min-width: 601px) { .snap-home .about, .snap-home .certs-slide { min-height: calc(100svh - 72px); } }
+.certs-slide { display: grid; padding-block: 32px; border-top: 2px solid var(--night-2); }
 @media (max-width: 759px) {
   .snap-home .certs ul {
     display: flex; gap: 14px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
     margin-inline: -20px; padding: 6px 20px 14px; scroll-padding-inline: 20px; scrollbar-width: none;
-    -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 18px, #000 84%, transparent); mask-image: linear-gradient(90deg, transparent, #000 18px, #000 84%, transparent);
   }
   .snap-home .certs ul::-webkit-scrollbar { display: none; }
   .snap-home .certs li { flex: 0 0 80%; scroll-snap-align: start; }
+}
+
+/* ---- fit fixes from real WebKit measurements (390×844, 1440×900) ---- */
+html, body { overflow-x: clip; }                       /* no sideways page scroll, sticky header still works */
+.cs-section__body > *, .chant { min-width: 0; max-width: 100%; }
+.snap-home .hero { min-height: calc(100svh - 104px); }
+@media (min-width: 601px) { .snap-home .hero { min-height: calc(100svh - 72px); } }
+.snap-case .frame img { height: min(220px, 22svh); }
+@media (min-width: 760px) { .snap-case .frame img { height: min(300px, 24svh); } }
+@media (max-width: 759px) {
+  /* heroes: compact 2×2 meta so visual + title + facts fit one screen */
+  .snap-case .cs-meta { grid-template-columns: 1fr 1fr; gap: 0 14px; }
+  .snap-case .cs-meta > div { padding-block: 8px; }
+  .snap-case .cs-meta dd { font-size: 14px; }
+  .snap-case .cs-hero .arch, .snap-case .cs-hero__visual { max-width: min(100%, 40svh); }
+  .snap-case .collage { max-width: min(100%, 36svh); }
+  /* tall content slides */
+  .snap-case .target__rings { width: min(150px, 40vw); }
+  .snap-case .top-post__img { max-width: 170px; }
+  .snap-case .top-post__big b { font-size: 52px; }
+  .snap-case .role-strip li { padding-block: 8px; font-size: 14px; }
+  .snap-case .fix { padding: 16px; }
+  .snap-case .fix dl { gap: 8px; }
+  .snap-case .fix dl > div { padding-top: 8px; }
+  .snap-case .fix dd { font-size: 14.5px; line-height: 1.45; }
+  .snap-case .ig-row { grid-template-columns: 42% 1fr; gap: 12px; }
+  .snap-case .ig-phone { width: 100%; }
+}
+@media (min-width: 760px) {
+  .snap-case .top-post__img { max-width: 340px; }
+  .snap-case .night__grid { grid-template-columns: repeat(4, 1fr); }
+  .snap-case .night__grid li:nth-child(even) { transform: translateY(16px); }
+  .snap-case .ig-phone { width: 200px; }
 }
