@@ -1063,22 +1063,16 @@ html.snap-home { scroll-snap-type: y mandatory; }
 .snap-home .work { padding-block: 24px; }
 .snap-home .work .section-title { scroll-snap-align: start; padding-top: 16px; }
 .snap-home .cards { grid-template-columns: 1fr; gap: 14svh; }
-.snap-home .cards .card { grid-column: auto; min-height: min(86svh, 760px); scroll-snap-align: center; scroll-snap-stop: always; grid-template-rows: minmax(0, 1fr) auto; grid-template-columns: 1fr; }
-.snap-home .cards .card .card__cover { aspect-ratio: auto; min-height: 34svh; }
+.snap-home .cards .card { grid-column: auto; min-height: min(78svh, 680px); scroll-snap-align: center; scroll-snap-stop: always; grid-template-rows: auto 1fr; grid-template-columns: 1fr; }
+.snap-home .cards .card .card__cover { aspect-ratio: 4 / 3; min-height: 0; }
+.snap-home .cards .card .card__meta { align-content: center; }
 .snap-home .about, .snap-home .contact { scroll-snap-align: start; }
 .snap-home .contact { min-height: 70svh; align-content: center; display: grid; }
 @media (min-width: 760px) {
   .snap-home .cards .card { grid-template-columns: 1.15fr 1fr; grid-template-rows: 1fr; min-height: min(80svh, 680px); }
+  .snap-home .cards .card .card__cover { aspect-ratio: auto; }
   .snap-home .cards .card .card__meta { align-content: center; padding: 40px; }
 }
-
-/* Wrapped-style big number on each project slide */
-.card__big { display: grid; gap: 4px; margin-bottom: 6px; }
-.card__big b { font: 900 clamp(64px, 15vw, 132px)/.88 var(--display); font-variation-settings: "SOFT" 100, "WONK" 1; letter-spacing: -.03em; color: var(--orange); }
-.card__big .label { color: var(--rust); }
-.card:nth-child(2) .card__big b { color: var(--teal); }
-.card:nth-child(3) .card__big b { color: var(--rust); }
-.card:nth-child(4) .card__big b { color: var(--teal); }
 
 /* ---- case studies: soft snap to each big section ---- */
 html.motion:not(.snap-home) { scroll-snap-type: y proximity; }
@@ -1097,7 +1091,6 @@ html.motion:not(.snap-home) { scroll-snap-type: y proximity; }
 .motion [data-parallax] { --p: 0; }
 .motion .card__cover img { scale: 1.14; translate: 0 calc(var(--p) * -36px); }
 .motion .card__cover::before { translate: 0 calc(var(--p) * 70px); }
-.motion .card__big { translate: 0 calc(var(--p) * 26px); }
 .motion .hero .arch__ring:nth-child(1) { translate: 0 calc(var(--p) * 10px); }
 .motion .hero .arch__ring:nth-child(2) { translate: 0 calc(var(--p) * 22px); }
 .motion .hero .arch__ring:nth-child(3) { translate: 0 calc(var(--p) * 34px); }
@@ -1111,3 +1104,14 @@ html.motion:not(.snap-home) { scroll-snap-type: y proximity; }
 .motion .part__poster { translate: 0 calc(var(--p) * -30px); }
 .motion .golden__frame img { scale: 1.12; translate: 0 calc(var(--p) * -30px); }
 .motion .night::before { translate: 0 calc(var(--p) * 80px); }
+
+/* ---- header always on top ---- */
+.bar { position: sticky; top: 0; z-index: 60; background: var(--night); box-shadow: 0 0 0 100vmax var(--night); clip-path: inset(0 -100vmax); }
+html { scroll-padding-top: 72px; }
+@media (max-width: 600px) { html { scroll-padding-top: 104px; } }
+
+/* Lagoon hero on phones: smaller logo so the show photo stays visible */
+@media (max-width: 759px) {
+  .theme-lagoon .cs-title img { width: 54vw; }
+  .theme-lagoon .cs-hero__text { margin-top: -16%; }
+}
