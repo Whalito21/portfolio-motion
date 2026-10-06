@@ -1181,3 +1181,15 @@ html[lang="th"] .memo__goals b { line-height: 1.4; }
   .snap-case .posters { padding-block: 24px; }
   .snap-case .posters__head { margin-bottom: 8px; }
 }
+
+/* Lagoon lineup on taller phones: the 2×2 poster wall fits one screen, so use it instead of the swipe row */
+@media (max-width: 759px) and (min-height: 700px) {
+  .snap-case .poster-wall {
+    display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 30px 18px;
+    overflow: visible; padding: 14px 8px 22px; -webkit-mask-image: none; mask-image: none;
+  }
+  .snap-case .poster-wall > * { flex: none; }
+  .snap-case .poster__date { width: 50px; height: 50px; font-size: 9px; left: -10px; }
+  .snap-case .poster__acts { font-size: 10px; letter-spacing: .04em; margin-top: 8px; }
+  .snap-case .poster__stamp { scale: .8; }
+}
