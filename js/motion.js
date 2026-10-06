@@ -41,9 +41,9 @@
       el.classList.add('rv-in');
       revealIO.unobserve(el);
       countUpIn(el);
-      setTimeout(() => done(el), 1400);
+      setTimeout(() => done(el), 1000);
     });
-  }, { threshold: .12, rootMargin: '0px 0px -8% 0px' });
+  }, { threshold: 0, rootMargin: '0px 0px 25% 0px' });   // start before the slide lands
   els.forEach((el) => revealIO.observe(el));
 
   // ---- 2. count-up: numbers roll up from 0 to their real value, then snap back to the exact text ----
