@@ -72,6 +72,19 @@ const TEXT = {
   'Internship at Prart Music Global': 'ฝึกงานที่ Prart Music Global',
   'TU Folksong Club': 'ชุมนุม TU Folksong',
 
+  // ---- slide titles (one screen per section) ----
+  'Step 1What they value': 'Step 1<br>สิ่งที่เขาให้คุณค่า',
+  'Step 3The data': 'Step 3<br>ข้อมูล',
+  'Step 3The series': 'Step 3<br>ซีรีส์โพสต์',
+  'Listeningto fans': 'ฟังเสียง<br>แฟนๆ',
+  'Show dayThe timeline': 'วันโชว์<br>ไทม์ไลน์',
+  'Finalnight': 'คืน<br>รอบชิง',
+  'The plan': 'แผนงาน',
+  'Listen': 'ฟังเพลง',
+  'The campaign': 'แคมเปญ',
+  'The show': 'โชว์',
+  'What I learned': 'สิ่งที่ได้เรียนรู้',
+
   // ---- lagoon ----
   'lagoon.livemusic — Chanon Boonsak (Bluewhale)': 'lagoon.livemusic — ชนน บุญศักดิ์ (Bluewhale)',
   'Aug 2025 – Jun 2026': 'ส.ค. 2568 – มิ.ย. 2569',

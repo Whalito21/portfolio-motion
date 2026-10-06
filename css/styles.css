@@ -1074,10 +1074,6 @@ html.snap-home { scroll-snap-type: y mandatory; }
   .snap-home .cards .card .card__meta { align-content: center; padding: 40px; }
 }
 
-/* ---- case studies: soft snap to each big section ---- */
-html.motion:not(.snap-home) { scroll-snap-type: y proximity; }
-.motion .cs-section, .motion .part, .motion .roll, .motion .golden, .motion .night, .motion .posters, .motion .cs-hero, .motion .b35-hero { scroll-snap-align: start; scroll-margin-top: 12px; }
-
 /* ---- reveal: rise up + settle (uses translate/scale so existing tilts keep working) ---- */
 .motion .rv { opacity: 0; translate: 0 56px; scale: .97; }
 .motion .rv.rv-in { opacity: 1; translate: 0 0; scale: 1; transition: opacity .7s ease, translate .9s cubic-bezier(.16, .84, .24, 1), scale .9s cubic-bezier(.16, .84, .24, 1); transition-delay: calc(var(--rv-i, 0) * 90ms); }
@@ -1118,3 +1114,50 @@ html { scroll-padding-top: 72px; }
 
 /* depth: rings drift inside the arch, never below its fade */
 .motion .arch { overflow: clip; overflow-clip-margin: 0; }
+
+/* ==========================================================
+   PROJECT PAGES AS SLIDES (experiment): one section per flick, each fits a screen
+   ========================================================== */
+html.snap-case { scroll-snap-type: y mandatory; --bar-h: 72px; }
+@media (max-width: 600px) { html.snap-case { --bar-h: 104px; } }
+.snap-case main > section, .snap-case main > header.part {
+  min-height: calc(100svh - var(--bar-h));
+  scroll-snap-align: start; scroll-snap-stop: always;
+  align-content: center; box-sizing: border-box;
+}
+.snap-case main > section:not(.cs-hero):not(.b35-hero) { padding-block: 32px; }
+.snap-case main > header.part { margin-top: 0; }
+.snap-case .next { scroll-snap-align: end; }
+.snap-case .part--sea, .snap-case .part--camp, .snap-case .part--poster { margin-block: 12px; }
+
+/* heroes and big visuals capped so they fit one phone screen */
+.snap-case .cs-hero .arch, .snap-case .cs-hero__visual { max-width: min(100%, 50svh); }
+.snap-case .cs-poster { max-width: min(300px, 44svh); }
+.snap-case .collage { max-width: min(100%, 44svh); }
+.snap-case .gantt__img img { max-height: 56svh; width: auto; margin-inline: auto; }
+.snap-case .golden__frame img { max-height: 56svh; }
+@media (max-width: 759px) {
+  .snap-case .part__poster { max-width: 190px; }
+  .snap-case .top-post__img { max-width: 230px; justify-self: center; }
+  .snap-case .target__rings { width: min(200px, 54vw); }
+}
+
+/* long rows of photos / cards become a sideways swipe on phones (next one peeks in) */
+@media (max-width: 759px) {
+  .snap-case :is(.ground, .series, .night__grid, .values, .day, .flow-steps, .poster-wall) {
+    display: flex !important; grid-template-columns: none !important; gap: 14px;
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+    margin-inline: -20px; padding: 6px 20px 14px; scroll-padding-inline: 20px;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent);
+  }
+  .snap-case :is(.ground, .series, .night__grid, .values, .day, .flow-steps, .poster-wall)::-webkit-scrollbar { display: none; }
+  .snap-case :is(.ground, .series, .night__grid, .values, .day, .flow-steps, .poster-wall) > * { flex: 0 0 78%; scroll-snap-align: start; }
+  .snap-case .ground--tall > * { flex-basis: 58%; }
+  .snap-case .poster-wall > * { flex-basis: 64%; }
+  .snap-case .series li { grid-template-columns: 1fr; }
+  .snap-case .night__grid li:nth-child(even) { transform: none; }
+  .snap-case .flow-steps li::after { display: none; }
+}
+/* inside one-screen slides the section title doesn't need to stick (it would slide under the header) */
+.snap-case .cs-section > h2 { position: static; }
