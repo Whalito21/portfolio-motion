@@ -45,7 +45,7 @@
       el.classList.add('rv-in');
       revealIO.unobserve(el);
       countUpIn(el);
-      setTimeout(() => done(el), 1000);
+      setTimeout(() => done(el), 1300);
     });
   }, { threshold: 0, rootMargin: '0px 0px 25% 0px' });   // start before the slide lands
   els.forEach((el) => revealIO.observe(el));
@@ -60,7 +60,7 @@
       if (!el.classList.contains('rv') || el.classList.contains('rv-in')) return false;
       const r = el.getBoundingClientRect();
       if (r.top < limit && r.bottom > -innerHeight * .25) {
-        el.classList.add('rv-in'); revealIO.unobserve(el); countUpIn(el); setTimeout(() => done(el), 1000);
+        el.classList.add('rv-in'); revealIO.unobserve(el); countUpIn(el); setTimeout(() => done(el), 1300);
         return false;
       }
       return true;
