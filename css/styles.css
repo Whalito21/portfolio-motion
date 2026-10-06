@@ -1051,3 +1051,63 @@ main, .bar, .footer { transition: opacity .25s ease; }
 /* home: role line under the name */
 .hero__role { margin: -6px 0 0; max-width: 22ch; font: 500 clamp(20px, 2.6vw, 26px)/1.3 var(--display); font-variation-settings: "SOFT" 100, "WONK" 0; color: var(--cream); }
 @media (max-width: 759px) { .hero__role { text-shadow: 0 2px 14px rgba(0, 0, 0, .6); } }
+
+/* ==========================================================
+   MOTION (experiment branch): Wrapped-style sugar on top of Seventies Stage
+   Only active when js/motion.js adds .motion (JS on, reduced motion off).
+   ========================================================== */
+
+/* ---- home: TikTok-style snapping, one project per screen ---- */
+html.snap-home { scroll-snap-type: y mandatory; }
+.snap-home .hero { min-height: 100svh; align-content: center; scroll-snap-align: start; }
+.snap-home .work { padding-block: 24px; }
+.snap-home .work .section-title { scroll-snap-align: start; padding-top: 16px; }
+.snap-home .cards { grid-template-columns: 1fr; gap: 14svh; }
+.snap-home .cards .card { grid-column: auto; min-height: min(86svh, 760px); scroll-snap-align: center; scroll-snap-stop: always; grid-template-rows: minmax(0, 1fr) auto; grid-template-columns: 1fr; }
+.snap-home .cards .card .card__cover { aspect-ratio: auto; min-height: 34svh; }
+.snap-home .about, .snap-home .contact { scroll-snap-align: start; }
+.snap-home .contact { min-height: 70svh; align-content: center; display: grid; }
+@media (min-width: 760px) {
+  .snap-home .cards .card { grid-template-columns: 1.15fr 1fr; grid-template-rows: 1fr; min-height: min(80svh, 680px); }
+  .snap-home .cards .card .card__meta { align-content: center; padding: 40px; }
+}
+
+/* Wrapped-style big number on each project slide */
+.card__big { display: grid; gap: 4px; margin-bottom: 6px; }
+.card__big b { font: 900 clamp(64px, 15vw, 132px)/.88 var(--display); font-variation-settings: "SOFT" 100, "WONK" 1; letter-spacing: -.03em; color: var(--orange); }
+.card__big .label { color: var(--rust); }
+.card:nth-child(2) .card__big b { color: var(--teal); }
+.card:nth-child(3) .card__big b { color: var(--rust); }
+.card:nth-child(4) .card__big b { color: var(--teal); }
+
+/* ---- case studies: soft snap to each big section ---- */
+html.motion:not(.snap-home) { scroll-snap-type: y proximity; }
+.motion .cs-section, .motion .part, .motion .roll, .motion .golden, .motion .night, .motion .posters, .motion .cs-hero, .motion .b35-hero { scroll-snap-align: start; scroll-margin-top: 12px; }
+
+/* ---- reveal: rise up + settle (uses translate/scale so existing tilts keep working) ---- */
+.motion .rv { opacity: 0; translate: 0 56px; scale: .97; }
+.motion .rv.rv-in { opacity: 1; translate: 0 0; scale: 1; transition: opacity .7s ease, translate .9s cubic-bezier(.16, .84, .24, 1), scale .9s cubic-bezier(.16, .84, .24, 1); transition-delay: calc(var(--rv-i, 0) * 90ms); }
+.motion .card.rv { translate: 0 90px; scale: .92; }
+
+/* bars and meters grow once their block arrives */
+.motion .views.rv .views__bar, .motion .meter.rv .meter__in { width: 0 !important; }
+.views__bar, .meter__in { transition: width 1.2s cubic-bezier(.16, .84, .24, 1) .2s; }
+
+/* ---- depth: layers drift at different speeds while a block travels through the screen ---- */
+.motion [data-parallax] { --p: 0; }
+.motion .card__cover img { scale: 1.14; translate: 0 calc(var(--p) * -36px); }
+.motion .card__cover::before { translate: 0 calc(var(--p) * 70px); }
+.motion .card__big { translate: 0 calc(var(--p) * 26px); }
+.motion .hero .arch__ring:nth-child(1) { translate: 0 calc(var(--p) * 10px); }
+.motion .hero .arch__ring:nth-child(2) { translate: 0 calc(var(--p) * 22px); }
+.motion .hero .arch__ring:nth-child(3) { translate: 0 calc(var(--p) * 34px); }
+.motion .hero .arch__ring:nth-child(4) { translate: 0 calc(var(--p) * 46px); }
+.motion .hero .arch__sun, .motion .cs-hero .arch__sun { translate: 0 calc(var(--p) * -60px); }
+.motion .cs-hero .arch__ring:nth-child(2) { translate: 0 calc(var(--p) * 16px); }
+.motion .cs-hero .arch__ring:nth-child(3) { translate: 0 calc(var(--p) * 28px); }
+.motion .cs-hero .arch__ring:nth-child(4) { translate: 0 calc(var(--p) * 40px); }
+.motion .collage__print--bus { translate: 0 calc(var(--p) * -50px); }
+.motion .collage__print--flags { translate: 0 calc(var(--p) * 40px); }
+.motion .part__poster { translate: 0 calc(var(--p) * -30px); }
+.motion .golden__frame img { scale: 1.12; translate: 0 calc(var(--p) * -30px); }
+.motion .night::before { translate: 0 calc(var(--p) * 80px); }
