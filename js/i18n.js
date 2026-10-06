@@ -106,7 +106,7 @@ const TEXT = {
   "Reclaimed-plastic set design became the brand's visual signature": '<mark>เซ็ตดีไซน์จากพลาสติกรีไซเคิล</mark> กลายเป็นเอกลักษณ์ของแบรนด์',
   'capacity show sold out: Yew & Television Off (1 Aug 2025), ~200K THB in ticket revenue': 'ที่นั่ง sold out: Yew &amp; Television Off (1 ส.ค. 2568) รายได้ค่าบัตร ~200K บาท',
   "organic views on a partner creator's reel for the Yented & Cornboi show (26 Jun 2026)": 'วิวออร์แกนิกบนรีลของครีเอเตอร์พาร์ทเนอร์ สำหรับโชว์ Yented &amp; Cornboi (26 มิ.ย. 2569)',
-  'Lagoon taught me to work to a professional standard, not a university one: coordinating A&R, stakeholders, and visual and lighting artists on one timeline, and keeping things professional even with close friends on the team, all while keeping up with my university classes.': 'Lagoon สอนให้ผมทำงานด้วยมาตรฐานมืออาชีพ ไม่ใช่มาตรฐานงานมหาลัย ต้องประสานทั้ง A&amp;R, stakeholder, ศิลปินภาพและแสง ให้อยู่บนไทม์ไลน์เดียวกัน และต้องรักษาความเป็นมืออาชีพแม้จะทำงานกับเพื่อนสนิท ทั้งหมดนี้ไปพร้อมกับการเรียนที่มหาลัย',
+  'Lagoon taught me to work to a professional standard, not a university one: coordinating A&R, stakeholders, and visual and lighting artists on one timeline, and keeping things professional even with close friends on the team, all while keeping up with my university classes.': 'Lagoon สอนให้ผมทำงานด้วยมาตรฐานมืออาชีพ ไม่ใช่มาตรฐานงานมหาลัย ต้องประสานทั้ง A&amp;R, stakeholder, ทีมงาน Visual และ Lighting ให้อยู่บนไทม์ไลน์เดียวกัน และต้องรักษาความเป็นมืออาชีพแม้จะทำงานกับเพื่อนสนิท ทั้งหมดนี้ไปพร้อมกับการเรียนที่มหาลัย',
   'Tap a photo to zoom': 'แตะรูปเพื่อดูใหญ่',
   'Gallery': 'แกลเลอรี',
   'View all photos': 'ดูรูปทั้งหมด',
