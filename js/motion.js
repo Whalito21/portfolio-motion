@@ -7,6 +7,10 @@
   const root = document.documentElement;
   root.classList.add('motion');
 
+  // snap site: a refresh always starts at the top instead of a restored mid-page position
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (!location.hash) window.scrollTo(0, 0);
+
   // ---- 1. reveal: blocks rise in, one after another inside the same parent ----
   const REVEAL = [
     '.hero__text > *', '.hero .arch',
@@ -45,6 +49,29 @@
     });
   }, { threshold: 0, rootMargin: '0px 0px 25% 0px' });   // start before the slide lands
   els.forEach((el) => revealIO.observe(el));
+
+  // safety net: some Safari versions skip observer callbacks after scroll restoration / snapping.
+  // On every scroll, anything on (or just below) the screen that is still hidden is revealed now.
+  let pending = els.slice(), queued = false;
+  function sweep() {
+    queued = false;
+    const limit = innerHeight * 1.25;
+    pending = pending.filter((el) => {
+      if (!el.classList.contains('rv') || el.classList.contains('rv-in')) return false;
+      const r = el.getBoundingClientRect();
+      if (r.top < limit && r.bottom > -innerHeight * .25) {
+        el.classList.add('rv-in'); revealIO.unobserve(el); countUpIn(el); setTimeout(() => done(el), 1000);
+        return false;
+      }
+      return true;
+    });
+    if (!pending.length) window.removeEventListener('scroll', onScroll);
+  }
+  function onScroll() { if (!queued) { queued = true; requestAnimationFrame(sweep); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('pageshow', onScroll);
+  requestAnimationFrame(sweep);
+  setTimeout(sweep, 600);
 
   // ---- 2. count-up: numbers roll up from 0 to their real value, then snap back to the exact text ----
   const NUM = '.stat b, .facts strong, .top-post__big b, .top-post__row b, .series__num b, .meter figcaption strong, .card__big b, .views__track b, [data-count]';
