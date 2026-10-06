@@ -1193,3 +1193,17 @@ html[lang="th"] .memo__goals b { line-height: 1.4; }
   .snap-case .poster__acts { font-size: 10px; letter-spacing: .04em; margin-top: 8px; }
   .snap-case .poster__stamp { scale: .8; }
 }
+
+/* home: Education and Certifications are separate snap slides; certificates swipe on phones */
+.snap-home .about { scroll-snap-align: start; }
+.snap-home .certs { scroll-snap-align: start; scroll-snap-stop: always; min-height: calc(100svh - 104px); align-content: center; }
+@media (min-width: 601px) { .snap-home .certs { min-height: calc(100svh - 72px); } }
+@media (max-width: 759px) {
+  .snap-home .certs ul {
+    display: flex; gap: 14px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+    margin-inline: -20px; padding: 6px 20px 14px; scroll-padding-inline: 20px; scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent);
+  }
+  .snap-home .certs ul::-webkit-scrollbar { display: none; }
+  .snap-home .certs li { flex: 0 0 80%; scroll-snap-align: start; }
+}
