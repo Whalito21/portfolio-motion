@@ -1115,3 +1115,6 @@ html { scroll-padding-top: 72px; }
   .theme-lagoon .cs-title img { width: 54vw; }
   .theme-lagoon .cs-hero__text { margin-top: -16%; }
 }
+
+/* depth: rings drift inside the arch, never below its fade */
+.motion .arch { overflow: clip; overflow-clip-margin: 0; }
